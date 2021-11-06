@@ -1,0 +1,78 @@
+<h1 id="terminal">Terminal</h1>
+<p>The terminal I use on a daily basis is <a href="https://en.wikipedia.org/wiki/Z_shell">zsh</a>. The Z Shell is a Unix shell which is in the family of the <a href="https://en.wikipedia.org/wiki/Bourne_shell">sh</a> shell (shell command line interpreter) that has many improvements on top of <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">bash</a>, <a href="https://en.wikipedia.org/wiki/KornShell">ksh</a>, and <a href="https://en.wikipedia.org/wiki/Tcsh">tcsh</a>. I also use the default terminal that is provided by my macbook air. I find it important to keep a minimalist setup to make sure everything is light and efficient. Zsh is installed on all of my computers (Window and macOS).</p>
+<h2 id="brew">Brew</h2>
+<p>I strongly believe that <a href="https://brew.sh/">brew</a> is mandatory for programming. Whether you have macOS, Linux or Windows, you should familiarize yourself with a package manager. I use brew, because I use a macbook, but it can be <a href="https://chocolatey.org/">chocolatey</a> for Windows.</p>
+<p>If Homebrew (or brew) is not installed on your computer: <a href="https://medium.com/@edwardbaeg9/using-homebrew-on-windows-10-with-windows-subsystem-for-linux-wsl-c7f1792f88b3">Linux or Windows (WSL)</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-homebrew-on-macos">macOS</a></p>
+<h2 id="oh-my-zsh">Oh My Zsh</h2>
+<p>The <a href="https://ohmyz.sh/#install">Oh my zsh</a> is an open source project that helps us manage the Zsh configuration with plugins, themes, alias and more. To install it, simply run -</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode zsh"><code class="sourceCode zsh"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> <span class="at">-c</span> <span class="st">&quot;</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="va">)</span><span class="st">&quot;</span></span></code></pre></div>
+<p>Ps- The <a href="https://github.com/ohmyzsh/ohmyzsh/wiki">Wiki</a> holds additional information like cheatsheets and more.</p>
+<p>Zsh comes with a configuration file called <code>.zshrc</code>. the file is located in the user’s home directory. To edit the configuration, simple run -</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode zsh"><code class="sourceCode zsh"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> ~/.zshrc</span></code></pre></div>
+<h3 id="theme">Theme</h3>
+<p>The theme I am using is called <code>minimal</code> on the <a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Themes">themes</a> available. Simply make the environnement variable <code>ZSH_THEME</code> to equal the theme you want-</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode zsh"><code class="sourceCode zsh"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">ZSH_THEME</span><span class="op">=</span><span class="st">&quot;minimal&quot;</span></span></code></pre></div>
+<h3 id="zsh-syntax-highlighting">Zsh syntax highlighting</h3>
+<p>My terminal has syntax highlighting which helps visualize the available commands and makes everything much more elegant. To set it up, simply add <code>zsh-syntax-highlighting</code> to your plugins array like-</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode zsh"><code class="sourceCode zsh"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">plugins</span><span class="op">=</span><span class="va">(</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  zsh-syntax-highlighting</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">)</span></span></code></pre></div>
+<p>The default colors where not to my liking, so I changed the default colors with-</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode zsh"><code class="sourceCode zsh"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">ZSH_HIGHLIGHT_STYLES</span><span class="op">[</span>suffix<span class="op">-</span>alias<span class="op">]=</span>fg=cyan,underline</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">ZSH_HIGHLIGHT_STYLES</span><span class="op">[</span>precommand<span class="op">]=</span>fg=cyan,underline</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">ZSH_HIGHLIGHT_STYLES</span><span class="op">[</span>arg0<span class="op">]=</span>fg=cyan</span></code></pre></div>
+<p>which are added in the configuration after the aliases.</p>
+<h3 id="bsd-and-gnu">BSD and GNU</h3>
+<p>The problem with macOs is that it comes with the command line utility from the BSD world, which has different (say minimal) interpretation of commands. For example, <code>sed</code> does not accept group-</p>
+<figure>
+<img src="./zsh/zsh-sed-bsd.png" alt="Trying to replace every characters with *" /><figcaption aria-hidden="true">Trying to replace every characters with *</figcaption>
+</figure>
+<p>As you can see, the characters aren’t replaced with *. To fix this issue, I have found the GNU alternative package on the brew repository and installed them.</p>
+<p>for <code>sed</code>, simply run-</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode zsh"><code class="sourceCode zsh"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install gnu-sed</span></code></pre></div>
+<figure>
+<img src="./zsh/brew-gnu-sed.png" alt="Installing gnu-sed" /><figcaption aria-hidden="true">Installing gnu-sed</figcaption>
+</figure>
+<p>and add an alias to the Zsh configuration to make the gnu <code>sed</code> the default <code>sed</code>-</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode zsh"><code class="sourceCode zsh"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> sed=<span class="st">&quot;gsed&quot;</span></span></code></pre></div>
+<p>And now, the <code>sed</code> command works as expected</p>
+<figure>
+<img src="./zsh/zsh-sed-gnu.png" alt="GNU sed works" /><figcaption aria-hidden="true">GNU sed works</figcaption>
+</figure>
+<p>Change each characters to a *.</p>
+<p>I did the same for <code>grep</code> and <code>egrep</code> with-</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode zsh"><code class="sourceCode zsh"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install grep</span></code></pre></div>
+<p>and aliases are-</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode zsh"><code class="sourceCode zsh"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> egrep=<span class="st">&quot;gegrep --color&quot;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> grep=<span class="st">&quot;ggrep --color&quot;</span></span></code></pre></div>
+<p>The <code>--color</code> is because it was not displaying the reddish color when using grep.</p>
+<figure>
+<img src="./zsh/grep.png" alt="Example of GNU grep" /><figcaption aria-hidden="true">Example of GNU grep</figcaption>
+</figure>
+<h3 id="git">Git</h3>
+<p>For my zsh plugins, I also use the <code>git</code> plugin. It helps with the shortcuts when typing certain commands. Furthermore, it makes git command available on the terminal. The shortcuts can be found <a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Cheatsheet">here</a>. Also, I like to add my own alias to <code>git push --set-upstream origin $(current_branch)</code>. Instead of <code>gpsup</code>, it is <code>gps</code>. The <code>git status</code> command is <code>gs</code> with a alias.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode zsh"><code class="sourceCode zsh"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="va">plugins</span><span class="op">=</span><span class="va">(</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  git</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="va">)</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> gps=<span class="st">&quot;gpsup&quot;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> gs=<span class="st">&quot;git status&quot;</span></span></code></pre></div>
+<h3 id="zsh-autosuggestions">Zsh autosuggestions</h3>
+<p>I also get the <code>zsh-autosuggestions</code> to make sure I can keep track of my last commands. It saves me a lot of time when writing complex (repetitive) commands.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode zsh"><code class="sourceCode zsh"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="va">plugins</span><span class="op">=</span><span class="va">(</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  zsh-autosuggestions</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="va">)</span></span></code></pre></div>
+<figure>
+<img src="./zsh/complete.png" alt="Image showing the suggestion" /><figcaption aria-hidden="true">Image showing the suggestion</figcaption>
+</figure>
+<h3 id="gitignore">Gitignore</h3>
+<p>A new plugin in my configuration is the <code>gitignore</code> plugin. It helps me create ignore files. For example, I need a ignore file for node, I simply run-</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode zsh"><code class="sourceCode zsh"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gi</span> node <span class="op">&gt;&gt;</span> .gitignore</span></code></pre></div>
+<p>Here is the plugins array-</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode zsh"><code class="sourceCode zsh"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="va">plugins</span><span class="op">=</span><span class="va">(</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  gitignore</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ...</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="va">)</span></span></code></pre></div>
+<p>In summary, we saw how to configure your terminal to be minimal, whilst still having access to powerful tools such as oh my zsh.</p>
